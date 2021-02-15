@@ -1,0 +1,63 @@
+var laser1 = createSprite(100,10,200,10);
+laser1.velocityY=2;
+laser1.shapeColor="red";
+
+var laser2 = createSprite(300,373,200,10);
+laser2.velocityY=-2;
+laser2.shapeColor="red";
+
+var laser3 = createSprite(196,105,300,10);
+laser3.velocityX=-2;
+laser3.shapeColor=("red");
+
+var thief = createSprite(6,387,10,10);
+
+
+
+function draw() {
+background("blue");
+drawSprites();
+createEdgeSprites();
+ 
+ var daimond = shape(390,0,380,10,390,20,400,10);
+ 
+ laser1.bounceOff(edges);
+ laser2.bounceOff(edges);
+ laser3.bounceOff(edges);
+ thief.collide(edges);
+ 
+ if(keyDown(RIGHT_ARROW)){
+   thief.velocityX=4;
+   thief.velocityY=0;
+ }
+ 
+ if(keyDown(LEFT_ARROW)){
+   thief.velocityX=-4;
+   thief.velocityY=0;
+ }
+ 
+ if(keyDown(UP_ARROW)){
+   thief.velocityX=0;
+   thief.velocityY=-4;
+ }
+ 
+ if(keyDown(DOWN_ARROW)){
+   thief.velocityX=0;
+   thief.velocityY=4;
+ }
+ 
+ if(laser1.isTouching(thief)||laser2.isTouching(thief)
+ ||laser1.isTouching(thief)){
+   stroke(0);
+   fill(0);
+   textSize(24);
+   text("thief is caught",120,200);
+   laser1.setVelocity(0,0);
+   laser2.setVelocity(0,0);
+   laser3.setVelocity(0,0);
+   thief.setVelocity(0,0);
+   
+}
+
+
+}
